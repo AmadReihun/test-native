@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "2cba9ff8-e09c-4005-8312-544527ebf723"
+      }
+    },
+    "owner": "ahmad777"
   }
 }
