@@ -13,7 +13,9 @@ import {
   Dimensions,
   FlatList,
   ScrollView,
+  TextInput,
 } from "react-native";
+
 
 const Separator = () => <View style={styles.separator} />;
 
@@ -38,98 +40,123 @@ const Item = ({ title }) => (
   </View>
 );
 
-const App = () => (
-  <SafeAreaView style={styles.container}>
-    {/* <ScrollView style={styles.scrollView}> */}
-    <View>
-      <Text style={{ textAlign: "center" }}>testing image with url</Text>
-      <Image
-        style={{}}
-        source={{
-          width: 100,
-          height: 100,
-          uri: "https://picsum.photos/id/1/200/300",
-        }}
-      />
-    </View>
+const App = () => {
+  const [email, onChangeEmail] = React.useState("");
+  const [Password, onChangePasswrod] = React.useState("");
 
-    <View
-      style={{
-        height: "20%",
-        padding: 20,
-      }}>
+  return (
+    <SafeAreaView style={styles.container}>
+      {/* <ScrollView style={styles.scrollView}> */}
       <View>
-        <Text>testing areas</Text>
+        <Text style={styles.title}>testing image with url</Text>
+        <Image
+          style={{}}
+          source={{
+            width: 100,
+            height: 100,
+            uri: "https://picsum.photos/id/1/200/300",
+          }}
+        />
       </View>
+
+      <View>
+        <Text style={styles.title}>testing text input</Text>
+        <TextInput
+          style={styles.input}
+          onChangeText={onChangeEmail}
+          value={email}
+          inputMode="email"
+          keyboardType="email-address"
+          placeholder="Email"
+        />
+        <TextInput
+          style={styles.input}
+          onChangeText={onChangePasswrod}
+          value={Password}
+          placeholder="Password"
+          // maxLength="15"
+        />
+        <View>
+        <Text style={styles.title}>Testing alert buttonnnn</Text>
+          <Button title="Sign in" onPress={() => alert("Wrong credential")} />
+        </View>
+      </View>
+
+      <View
+        style={{
+          height: "20%",
+          padding: 20,
+        }}>
+        <View>
+          <Text>testing areas</Text>
+        </View>
+        <Separator />
+        <View style={{ backgroundColor: "blue", flex: 1, width: "50%" }} />
+        <View style={{ backgroundColor: "red", flex: 1, width: "75%" }} />
+      </View>
+
+      
+
       <Separator />
-      <View style={{ backgroundColor: "blue", flex: 1, width: "50%" }} />
-      <View style={{ backgroundColor: "red", flex: 1, width: "75%" }} />
-    </View>
 
-    <View>
-      <Text style={styles.title}>Testing alert buttonnnn</Text>
-      <Button title="Warning" onPress={() => alert("whyyy")} />
-    </View>
+      <View>
+        <Text>testing image with source</Text>
+      </View>
 
-    <Separator />
-
-    <View>
-      <Text>testing image with source</Text>
-    </View>
-
-    <View>
-      <Text>testing Alert.alert</Text>
-      <Button
-        title="Login"
-        onPress={() =>
-          Alert.prompt("Login information", "username", (text) =>
-            console.log(text)
-          )
-        }
-      />
-    </View>
-
-    <View>
-      <Text>testing Alert.prompt</Text>
-      <Button
-        title="Press meee"
-        color="orange"
-        onPress={() =>
-          Alert.alert("Info", "Please click yes or now", [
-            { text: "Yes" },
-            { text: "No" },
-          ])
-        }
-      />
-    </View>
-
-    <View>
-      <Text style={{ textAlign: "center" }}>testing listing items</Text>
-      <FlatList
-        data={DATA}
-        renderItem={({ item }) => <Item title={item.title} />}
-        keyExtractor={(item) => item.id}
-      />
-    </View>
-
-    <View>
-      <Text style={styles.title}>
-        This layout strategy lets the title define the width of the button.
-      </Text>
-      <View style={styles.fixToText}>
+      <View>
+        <Text>testing Alert.alert</Text>
         <Button
-          title="Left button"
-          onPress={() => Alert.alert("Left button pressed")}
-        />
-        <Button
-          title="Right button"
-          onPress={() => Alert.alert("Right button pressed")}
+          title="Login"
+          onPress={() =>
+            Alert.prompt("Login information", "username", (text) =>
+              console.log(text)
+            )
+          }
         />
       </View>
-    </View>
-    {/* </ScrollView> */}
-  </SafeAreaView>
-);
+
+      <View>
+        <Text>testing Alert.prompt</Text>
+        <Button
+          title="Press meee"
+          color="orange"
+          onPress={() =>
+            Alert.alert("Info", "Please click yes or now", [
+              { text: "Yes" },
+              { text: "No" },
+            ])
+          }
+        />
+      </View>
+
+      <View>
+        <Text style={{ textAlign: "center" }}>testing listing items</Text>
+        <FlatList
+          data={DATA}
+          renderItem={({ item }) => <Item title={item.title} />}
+          keyExtractor={(item) => item.id}
+        />
+      </View>
+
+      <View>
+        <Text style={styles.title}>
+          This layout strategy lets the title define the width of the button.
+        </Text>
+        <View style={styles.fixToText}>
+          <Button
+            title="Left button"
+            onPress={() => Alert.alert("Left button pressed")}
+          />
+          <Button
+            title="Right button"
+            onPress={() => Alert.alert("Right button pressed")}
+          />
+        </View>
+      </View>
+      {/* </ScrollView> */}
+    </SafeAreaView>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -153,6 +180,12 @@ const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: "pink",
     marginHorizontal: 20,
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
   },
 });
 
